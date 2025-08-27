@@ -1,0 +1,17 @@
+{
+    "name": "mirco/wordpress-adventure",
+    "description": "Wordpress text adventure plugin",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Mirco\\WordpressAdventure\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mirco Baalmans",
+            "email": "mircobaalmans@live.nl"
+        }
+    ],
+    "require": {}
+}
