@@ -16,6 +16,7 @@ define('JS_URL', BASE_URL + '/assets/js/');
 // Activation hook
 function wp_adventure_activate() {
     // Code to run on activation
+    checkAndCreateAdventureTables();
 }
 register_activation_hook(__FILE__, 'wp_adventure_activate');
 
@@ -28,6 +29,7 @@ register_deactivation_hook(__FILE__, 'wp_adventure_deactivate');
 // Uninstall hook
 function wp_adventure_uninstall() {
     // Code to run on uninstall
+    deleteAdventureTables();
 }
 register_uninstall_hook(__FILE__, 'wp_adventure_uninstall');
 
@@ -36,3 +38,103 @@ function wp_adventure_init() {
     // Code to run on init
 }
 add_action('init', 'wp_adventure_init');
+
+function createAdventureTables(){
+    global $wpdb;
+    $charset_collate = $wpdb->get_charset_collate();
+
+    // Characters table
+    $characters = "CREATE TABLE {$wpdb->prefix}adventure_characters (
+        ID bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name varchar(255) NOT NULL,
+        equipment json DEFAULT NULL,
+        stats json DEFAULT NULL,
+        gold int(11) DEFAULT 0,
+        level int(11) DEFAULT 1,
+        PRIMARY KEY (ID)
+    ) $charset_collate;";
+
+    // UserCharacters table
+    $user_characters = "CREATE TABLE {$wpdb->prefix}adventure_user_characters (
+        user_id bigint(20) UNSIGNED NOT NULL,
+        character_id bigint(20) UNSIGNED NOT NULL,
+        PRIMARY KEY (user_id, character_id),
+        KEY character_id (character_id)
+    ) $charset_collate;";
+
+    // Mounts table
+    $mounts = "CREATE TABLE {$wpdb->prefix}adventure_mounts (
+        ID bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name varchar(255) NOT NULL,
+        description text DEFAULT NULL,
+        speed_modifier double DEFAULT 1.0,
+        PRIMARY KEY (ID)
+    ) $charset_collate;";
+
+    // ItemTypes table
+    $item_types = "CREATE TABLE {$wpdb->prefix}adventure_item_types (
+        ID bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name varchar(255) NOT NULL,
+        PRIMARY KEY (ID)
+    ) $charset_collate;";
+
+    // Items table
+    $items = "CREATE TABLE {$wpdb->prefix}adventure_items (
+        ID bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name varchar(255) NOT NULL,
+        description text DEFAULT NULL,
+        type int(11) UNSIGNED NOT NULL,
+        effect varchar(255) DEFAULT NULL,
+        effect_value double DEFAULT NULL,
+        PRIMARY KEY (ID),
+        KEY type (type),
+        CONSTRAINT fk_item_type FOREIGN KEY (type) REFERENCES {$wpdb->prefix}adventure_item_types(ID) ON DELETE CASCADE
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($characters);
+    dbDelta($user_characters);
+    dbDelta($mounts);
+    dbDelta($item_types);
+    dbDelta($items);
+}
+
+function deleteAdventureTables(){
+    global $wpdb;
+
+    $tables = [
+        "{$wpdb->prefix}adventure_items",
+        "{$wpdb->prefix}adventure_item_types",
+        "{$wpdb->prefix}adventure_mounts",
+        "{$wpdb->prefix}adventure_user_characters",
+        "{$wpdb->prefix}adventure_characters"
+    ];
+
+    foreach ($tables as $table) {
+        $wpdb->query("DROP TABLE IF EXISTS $table");
+    }
+}
+
+function checkAndCreateAdventureTables(){
+    global $wpdb;
+
+    $tables = [
+        "{$wpdb->prefix}adventure_characters",
+        "{$wpdb->prefix}adventure_user_characters",
+        "{$wpdb->prefix}adventure_mounts",
+        "{$wpdb->prefix}adventure_item_types",
+        "{$wpdb->prefix}adventure_items"
+    ];
+
+    $missing = false;
+    foreach ($tables as $table) {
+        if ($wpdb->get_var("SHOW TABLES LIKE '{$table}'") != $table) {
+            $missing = true;
+            break;
+        }
+    }
+
+    if ($missing) {
+        createAdventureTables();
+    }
+}
