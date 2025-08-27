@@ -1,2 +1,2 @@
-# WP-Adventure
+# Wordpress Adventure
 Wordpress text adventure
