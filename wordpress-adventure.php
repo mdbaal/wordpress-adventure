@@ -6,8 +6,8 @@ Version: 1.0.0
 Author: Mirco Baalmans
 License: GPL2
 */
-
 require_once 'vendor/autoload.php';
+use WordpressAdventure\WordpressAdventure;
 
 define('VERSION', '1.0.0');
 define('BASE_URL',plugin_dir_url(__FILE__));
@@ -36,7 +36,12 @@ register_uninstall_hook(__FILE__, 'wp_adventure_uninstall');
 
 // Plugin initialization
 function wp_adventure_init() {
-    // Code to run on init
+    $wp_adventure = new WordpressAdventure();
+    
+    //Register actions
+    add_action("admin_menu", [$wp_adventure,'registerAdminPage']);
+
+    $wp_adventure->init();
 }
 add_action('init', 'wp_adventure_init');
 
