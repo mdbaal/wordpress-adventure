@@ -8,6 +8,8 @@ Author URI: https://example.com/
 License: GPL2
 */
 
+require_once 'vendor/autoload.php';
+
 define('VERSION', '1.0.0');
 define('BASE_URL',plugin_dir_url(__FILE__));
 define('CSS_URL', BASE_URL . '/assets/css/');
