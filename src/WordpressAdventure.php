@@ -1,29 +1,29 @@
 <?php
-
 namespace WordpressAdventure;
 
-use WordPressAdventure\Admin\AdminController;
+use WordpressAdventure\Admin\AdminController;
 
 class WordpressAdventure
 {
+    public function __construct() {
+       //
+    }
 
     public function init()
     {
         // Initialization code here
         $this->registerAdventurePostType();
-        $this->registerAdminPage();
         $this->loadSettings();
         $this->loadCharacter();
     }
 
-    private function registerAdminPage(){
+    public function registerAdminPage(){
         add_menu_page(
             "Wordpress Adventure",
             "WP Adventure",
-            "manage_adventures",
+            "manage_options",
             'wordpress-adventure',
-            [AdminController::getInstance(),'renderAdminPage'],
-            'shield'
+            [AdminController::getInstance(),'renderAdminPage']
         );
     }
 
@@ -34,7 +34,8 @@ class WordpressAdventure
                 'label' => __('location','wordpress'),
                 'description' => "A location where you can adventure to on your site",
                 'public' => false,
-                'has_archive' => false
+                'has_archive' => false,
+                'rewrite' => array( 'slug' => 'adventure'),
             ]
         );
    }
