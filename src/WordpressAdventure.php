@@ -36,6 +36,9 @@ class WordpressAdventure
                 'public' => false,
                 'has_archive' => false,
                 'rewrite' => array( 'slug' => 'adventure'),
+                'supports' => array( 'title', 'excerpt'),
+                'template' => array(),
+                'template_lock' => true
             ]
         );
    }
