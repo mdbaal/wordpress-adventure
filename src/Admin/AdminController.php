@@ -1,6 +1,6 @@
 <?php
 
-namespace WordPressAdventure\Admin;
+namespace WordpressAdventure\Admin;
 
 class AdminController
 {
@@ -25,6 +25,6 @@ class AdminController
     }
 
     public function renderAdminPage(){
-        
+        return "";
     }
 }
