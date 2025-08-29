@@ -3,8 +3,7 @@
 Plugin Name: WordPress Adventure
 Description: A Wordpress text adventure plugin. Turn your site into an adventure
 Version: 1.0.0
-Author: Your Name
-Author URI: https://example.com/
+Author: Mirco Baalmans
 License: GPL2
 */
 
