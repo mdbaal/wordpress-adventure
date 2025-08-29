@@ -10,8 +10,8 @@ License: GPL2
 
 define('VERSION', '1.0.0');
 define('BASE_URL',plugin_dir_url(__FILE__));
-define('CSS_URL', BASE_URL + '/assets/css/');
-define('JS_URL', BASE_URL + '/assets/js/');
+define('CSS_URL', BASE_URL . '/assets/css/');
+define('JS_URL', BASE_URL . '/assets/js/');
 
 // Activation hook
 function wp_adventure_activate() {
