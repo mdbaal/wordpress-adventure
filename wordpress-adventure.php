@@ -42,10 +42,37 @@ function wp_adventure_init() {
     
     //Register actions & filters
     add_action("admin_menu", [$wp_adventure,'registerAdminPage']);
+    add_action('admin_enqueue_scripts', function(){
+        loadAdminStyles();
+        loadAdminScripts();
+    });
+
+    add_action('wp_enqueue_scripts', function(){
+        loadStyles();
+        loadScripts();
+    });
+
 
     $wp_adventure->init();
 }
 add_action('init', 'wp_adventure_init');
+
+function loadAdminStyles(){
+    wp_enqueue_style('material-icons', "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+    wp_enqueue_style('adventure-admin',BASE_URL . 'assets/css/adventure-admin.css',array(),VERSION);
+}
+
+function loadAdminScripts(){
+    
+}
+
+function loadStyles(){
+        
+}
+
+function loadScripts(){
+
+}
 
 function createAdventureTables(){
     global $wpdb;
