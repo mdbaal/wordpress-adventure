@@ -1,0 +1,88 @@
+.adventure-admin{
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    color:#3b3b3b;
+    padding:5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.adventure-admin hr{
+    width: 100%;
+    border-top: 2px solid rgba(0,0,0,.2);
+}
+
+.adventure-page-title{
+    margin: 3rem auto;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.adventure-pages{
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,.2);
+    padding: 10px;
+}
+
+.adventure-pages h3{
+    font-size: x-large;
+}
+
+.adventure-pages-table{
+    background-color: #FFF;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.adventure-pages-table .page-table-row{
+    display: flex;
+    flex-direction: row;
+    background-color: #FFF;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.adventure-pages-table .page-table-row:nth-child(even){
+    background-color: #e1e1e1;   
+}
+
+.adventure-pages-table .page-table-row > *{
+    padding: 5px;
+    vertical-align: middle;
+    flex:2;
+}
+
+.adventure-pages-table .page-table-row > *:last-child{
+    flex:1;
+}
+
+/** SETTINGS **/
+
+.adventure-settings{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:50px;
+}
+
+.adventure-setting{
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,.2);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.adventure-setting h3{
+    font-size: large;
+}
+
+.adventure-setting input,
+.adventure-setting textarea{
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 10px;
+    padding:5px;
+}
