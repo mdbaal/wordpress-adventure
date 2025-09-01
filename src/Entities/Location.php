@@ -2,8 +2,8 @@
 
 namespace WordPressAdventure\Entities;
 
-class Location
-{
+class Location extends Entity
+{   
     private string $title = "";
     private string $locationText = "";
     private array $lootTable = [];
