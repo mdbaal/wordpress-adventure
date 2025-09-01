@@ -97,15 +97,6 @@ function createAdventureTables(){
         KEY character_id (character_id)
     ) $charset_collate;";
 
-    // Mounts table
-    $mounts = "CREATE TABLE {$wpdb->prefix}adventure_mounts (
-        ID bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-        name varchar(255) NOT NULL,
-        description text DEFAULT NULL,
-        speed_modifier double DEFAULT 1.0,
-        PRIMARY KEY (ID)
-    ) $charset_collate;";
-
     // ItemTypes table
     $item_types = "CREATE TABLE {$wpdb->prefix}adventure_item_types (
         ID bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -140,7 +131,6 @@ function deleteAdventureTables(){
     $tables = [
         "{$wpdb->prefix}adventure_items",
         "{$wpdb->prefix}adventure_item_types",
-        "{$wpdb->prefix}adventure_mounts",
         "{$wpdb->prefix}adventure_user_characters",
         "{$wpdb->prefix}adventure_characters"
     ];
@@ -156,7 +146,6 @@ function checkAndCreateAdventureTables(){
     $tables = [
         "{$wpdb->prefix}adventure_characters",
         "{$wpdb->prefix}adventure_user_characters",
-        "{$wpdb->prefix}adventure_mounts",
         "{$wpdb->prefix}adventure_item_types",
         "{$wpdb->prefix}adventure_items"
     ];
