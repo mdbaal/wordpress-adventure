@@ -14,6 +14,7 @@ define('BASE_URL',plugin_dir_url(__FILE__));
 define('BASE_DIR', plugin_dir_path(__FILE__));
 define('CSS_URL', BASE_URL . '/assets/css/');
 define('JS_URL', BASE_URL . '/assets/js/');
+define('TEXT_DOMAIN','wordpress-adventure');
 
 // Activation hook
 function wp_adventure_activate() {
