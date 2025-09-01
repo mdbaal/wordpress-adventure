@@ -1,7 +1,7 @@
 <?php
 namespace WordpressAdventure;
 
-use WordpressAdventure\Admin\AdminController;
+use WordpressAdventure\Controllers\AdminController;
 
 class WordpressAdventure
 {

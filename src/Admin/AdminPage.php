@@ -1,27 +1,11 @@
 <?php
 
-namespace WordpressAdventure\Admin;
+namespace WordPressAdventure\Admin;
 
-class AdminController
+class AdminPage
 {
-    private static $instance = null;
-
-    private function __construct()
+    public static function render(array $pages, array $settings)
     {
-        // Initialization code here
-    }
-
-    public static function getInstance()
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
-    public function renderAdminPage(){
-        $settings = array(0,1,2,3);
-        $pages = array(0,1,2,3);
         ?>
             <h2 class="adventure-page-title"><?= __("Customize the adventure", TEXT_DOMAIN);  ?> </h2>
             <div class="adventure-admin">
