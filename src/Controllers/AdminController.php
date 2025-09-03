@@ -28,4 +28,12 @@ class AdminController
         
         AdminPage::render($pages, $settings);
     }
+
+    public function getSettings(): array{
+        return [];
+    }
+
+    public function setSettings($request): void{
+
+    }
 }
