@@ -8,7 +8,7 @@ use WP_REST_Server;
 
 class AdminEndpoints extends Endpoint
 {
-    public function registerAdventureAdminEndpoints(){
+    public function registerAdminEndpoints(){
         // Settings
         register_rest_route($this->apiNamespace,'/settings',
             [
@@ -16,17 +16,11 @@ class AdminEndpoints extends Endpoint
                     'methods' => WP_REST_Server::READABLE,
                     'callback' => [AdminController::getInstance(),'getSettings'],
                     'permission_callback' => [$this,'readPermissionCheck'],
-                    'args' => [
-
-                    ]
                 ],
                 [
                     'methods' => WP_REST_Server::CREATABLE,
                     'callback' => [AdminController::getInstance(),'setSettings'],
                     'permission_callback' => [$this,'createPermissionCheck'],
-                    'args' => [
-                        
-                    ]
                 ]
             ]
         );

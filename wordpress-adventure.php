@@ -11,6 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once 'vendor/autoload.php';
+
+use WordpressAdventure\Api\Endpoints\AdminEndpoints;
+use WordpressAdventure\Api\Endpoints\PagesEndpoints;
 use WordpressAdventure\WordpressAdventure;
 
 define('VERSION', '1.0.0');
@@ -40,6 +43,15 @@ function wp_adventure_uninstall() {
     deleteAdventureTables();
 }
 register_uninstall_hook(__FILE__, 'wp_adventure_uninstall');
+
+function wp_adventure_register_endpoints(){
+    $admin = new AdminEndpoints();
+    $admin->registerAdminEndpoints();
+
+    $pages = new PagesEndpoints();
+    $pages->registerPageEndpoints();
+}
+add_action('rest_api_init','wp_adventure_register_endpoints');
 
 // Plugin initialization
 function wp_adventure_init() {
