@@ -6,6 +6,10 @@ Version: 1.0.0
 Author: Mirco Baalmans
 License: GPL2
 */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 require_once 'vendor/autoload.php';
 use WordpressAdventure\WordpressAdventure;
 
