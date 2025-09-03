@@ -140,8 +140,7 @@ function createAdventureTables(){
         effect varchar(255) DEFAULT NULL,
         effect_value double DEFAULT NULL,
         PRIMARY KEY (ID),
-        KEY type (type),
-        CONSTRAINT fk_item_type FOREIGN KEY (type) REFERENCES {$wpdb->prefix}adventure_item_types(ID) ON DELETE CASCADE
+        KEY type (type)
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
