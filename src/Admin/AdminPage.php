@@ -2,8 +2,6 @@
 
 namespace WordPressAdventure\Admin;
 
-use function PHPSTORM_META\type;
-
 class AdminPage
 {
     public static function render(array $pages, array $settings)
