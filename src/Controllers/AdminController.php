@@ -3,6 +3,7 @@
 namespace WordpressAdventure\Controllers;
 
 use WordpressAdventure\Admin\AdminPage;
+use WP_REST_Request;
 
 class AdminController extends Controller
 {
@@ -14,10 +15,16 @@ class AdminController extends Controller
     }
 
     public function getSettings(): array{
-        return [];
+        $settings = get_option('adventure_settings',[]);
+
+        return is_array($settings) ? $settings : json_decode($settings, true);
     }
 
-    public function setSettings($request): void{
+    public function setSettings(WP_REST_Request $request): void{
+        $settings = $request->get_param('adventureSettings');
 
+        $settings = json_encode($settings);
+
+        update_option('adventure_settings', $settings, false);
     }
 }
