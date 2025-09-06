@@ -2,6 +2,8 @@
 
 namespace WordPressAdventure\Admin;
 
+use function PHPSTORM_META\type;
+
 class AdminPage
 {
     public static function render(array $pages, array $settings)
@@ -35,17 +37,53 @@ class AdminPage
                 <div class="adventure-settings">
                     <?php
                     foreach($settings as $setting){
-                    ?>
-                        <div class="adventure-setting">
-                            <h3><?= __('Adventure Settings', TEXT_DOMAIN) ?></h3>
-                            <input type="text" placeholder="setting">
-                            <textarea></textarea>
-                        </div>
-                    <?php
+                        self::getSettingCard($setting);
                     }
                     ?>
                 </div>
             </div>
         <?php
+    }
+
+    private static function getSettingCard(array $setting){
+        $name = $setting['name'];
+        $type = $setting['type'];
+        $value = $setting['value'];
+        $options = $settings['options'] ?? [];
+
+        switch($type){
+            case "textarea":
+                ?>
+                <div class="adventure-setting">
+                    <h3><?= $name ?></h3>
+                    <textarea value="<?=$value?>">
+                </div>
+                <?php
+                ;
+            case "select":
+                ?>
+                    <div class="adventure-setting">
+                    <h3><?= $name ?></h3>
+                    <select value="<?=$value?>">
+                    <?php
+                    foreach($options as $option){
+                    ?>
+                        <option value="<?= $option ?>"><?= $option ?></option>
+                    <?php
+                    }
+                    ?>
+                    </select>
+                </div>
+                <?php
+                ;
+            default:
+                ?>
+                <div class="adventure-setting">
+                    <h3><?= $name ?></h3>
+                    <input type="<?= $type ?>" value="<?=$value?>">
+                </div>
+                <?php
+
+        }
     }
 }
