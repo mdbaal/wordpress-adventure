@@ -7,6 +7,8 @@ use WP_REST_Request;
 
 class AdminController extends Controller
 {
+    protected static $instance = null;
+
     public function renderAdminPage(){
         $pages = array(0,1,2,3);
         $settings = array(0,1,2,3);
